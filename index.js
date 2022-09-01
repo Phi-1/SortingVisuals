@@ -1,4 +1,5 @@
 import BubbleSort from "./BubbleSort.js";
+import SelectionSort from "./SelectionSort.js";
 import Sort from "./Sort.js";
 
 
@@ -10,6 +11,6 @@ function randomizeArray(length, maxValue) {
     return output
 }
 
-const randomArray = randomizeArray(50, 100)
-const bubblesort = new BubbleSort(document.getElementById("sort-graph"), randomArray)
+const randomArray = randomizeArray(10000, 100)
+const bubblesort = new SelectionSort(document.getElementById("sort-graph"), randomArray)
 bubblesort.start()

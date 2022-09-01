@@ -4,8 +4,8 @@ class Sort {
     
     // margins in proportions
     static MARGIN_LR = 0.1
-    static MARGIN_T = 0.1
-    static MARGIN_B = 0.2
+    static MARGIN_T = 0.15
+    static MARGIN_B = 0.1
     static MARGIN_ITEM = 0.1
 
     constructor(canvas, data) {
@@ -44,12 +44,6 @@ class Sort {
         const graphHeight = (cH - mB) - mT 
         // divide length by number of items
         const itemWidth = graphWidth / this.data.length
-        // draw underline
-        this.ctx.strokeStyle = "#FFF"
-        this.ctx.lineWidth = 1
-        this.ctx.moveTo(mLR, graphHeight + mT)
-        this.ctx.lineTo(mLR + graphWidth, graphHeight + mT)
-        this.ctx.stroke()
         // get biggest value, draw items as proportions
         const maxValue = this.getMaxValue(this.data)
         this.ctx.fillStyle = this.done ? "#AFA" : "#FFF"
@@ -57,6 +51,12 @@ class Sort {
             const barHeight = graphHeight * (this.data[i] / maxValue)
             this.ctx.fillRect(mLR + (itemWidth * i) + (Sort.MARGIN_ITEM * itemWidth), mT + (graphHeight - barHeight), itemWidth - ((Sort.MARGIN_ITEM * itemWidth) * 2), barHeight)
         }
+        // draw underline
+        this.ctx.strokeStyle = "#FFF"
+        this.ctx.lineWidth = 2
+        this.ctx.moveTo(mLR, graphHeight + mT)
+        this.ctx.lineTo(mLR + graphWidth, graphHeight + mT)
+        this.ctx.stroke()
     }
 
     getMaxValue(list) {

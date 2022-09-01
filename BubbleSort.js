@@ -1,5 +1,6 @@
 import Sort from "./Sort.js";
 
+// O(n^2)
 class BubbleSort extends Sort {
 
     constructor(canvas, data) {
