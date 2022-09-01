@@ -1,6 +1,6 @@
 import Sort from "./Sort.js";
 
-// O(n) I think
+// O(n^2)
 class SelectionSort extends Sort {
 
     constructor(canvas, data) {
