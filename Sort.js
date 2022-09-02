@@ -8,17 +8,20 @@ class Sort {
     static MARGIN_B = 0.1
     static MARGIN_ITEM = 0.1
 
-    constructor(canvas, data) {
+    constructor(canvas, data, rainbowMode=false, startTimeout=0) {
         this.canvas = canvas
         this.canvas.width = canvas.clientWidth
         this.canvas.height = canvas.clientHeight
         this.ctx = canvas.getContext("2d")
         this.data = data
         this.done = false
+        this.rainbowMode = rainbowMode
+        this.startTimeout = startTimeout
     }
 
     start() {
-        this.loop()
+        this.render()
+        setTimeout(this.loop.bind(this), this.startTimeout)
     }
 
     loop() {
@@ -46,14 +49,17 @@ class Sort {
         const itemWidth = graphWidth / this.data.length
         // get biggest value, draw items as proportions
         const maxValue = this.getMaxValue(this.data)
-        this.ctx.fillStyle = this.done ? "#AFA" : "#FFF"
+        // set fill color when not in rainbow mode
+        if (!this.rainbowMode) this.ctx.fillStyle = this.done ? "#AFA" : "#FFF"
         for (let i = 0; i < this.data.length; i++) {
+            // set fill color when in rainbow mode
+            if (this.rainbowMode) this.ctx.fillStyle = `hsl(${(this.data[i] / maxValue) * 360}, 90%, 50%)`
             const barHeight = graphHeight * (this.data[i] / maxValue)
             this.ctx.fillRect(mLR + (itemWidth * i) + (Sort.MARGIN_ITEM * itemWidth), mT + (graphHeight - barHeight), itemWidth - ((Sort.MARGIN_ITEM * itemWidth) * 2), barHeight)
         }
         // draw underline
         this.ctx.strokeStyle = "#FFF"
-        this.ctx.lineWidth = 2
+        this.ctx.lineWidth = 3
         this.ctx.moveTo(mLR, graphHeight + mT)
         this.ctx.lineTo(mLR + graphWidth, graphHeight + mT)
         this.ctx.stroke()

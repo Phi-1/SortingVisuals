@@ -3,8 +3,8 @@ import Sort from "./Sort.js";
 // O(n^2)
 class SelectionSort extends Sort {
 
-    constructor(canvas, data) {
-        super(canvas, data)
+    constructor(canvas, data, rainbowMode=false, startTimeout=0) {
+        super(canvas, data, rainbowMode, startTimeout)
         this._i = 0
     }
 

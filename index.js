@@ -11,6 +11,6 @@ function randomizeArray(length, maxValue) {
     return output
 }
 
-const randomArray = randomizeArray(10000, 100)
-const bubblesort = new SelectionSort(document.getElementById("sort-graph"), randomArray)
-bubblesort.start()
+const randomArray = randomizeArray(100, 100)
+const selectionsort = new SelectionSort(document.getElementById("sort-graph"), randomArray, true, 3000)
+selectionsort.start()
